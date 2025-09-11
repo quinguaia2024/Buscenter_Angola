@@ -8,1030 +8,12 @@
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap"
         rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
     <style>
-        /* Variáveis de cores e estilos globais */
-        :root {
-            --cor1: #F2C438;
-            --cor2: #F2B035;
-            --cor3: #593202;
-            --cor4: #F28738;
-            --cor5: #FFFFFF;
-            --sombra: 4px 4px 6px 8px rgba(0, 0, 0, 0.1);
-            --transicao: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Nunito Sans', sans-serif;
-            color: #333;
-            overflow-x: hidden;
-            background-color: var(--cor5);
-        }
-
-        /* Barra de rolagem personalizada */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--cor4);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--cor2);
-        }
-
-        /* Container principal */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Cabeçalho e Navegação */
-        header {
-            background-color: var(--cor5);
-            box-shadow: var(--sombra);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 50px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin: 0 15px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--cor3);
-            font-weight: 600;
-            font-size: 16px;
-            transition: var(--transicao);
-            position: relative;
-        }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--cor4);
-            left: 0;
-            bottom: -5px;
-            transition: var(--transicao);
-        }
-
-        .nav-links a:hover {
-            color: var(--cor4);
-        }
-
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
-
-        .bar {
-            display: block;
-            width: 25px;
-            height: 3px;
-            margin: 5px auto;
-            background-color: var(--cor3);
-            transition: var(--transicao);
-        }
-
-        /* Layout principal com todas as seções visíveis */
-        main {
-            margin-top: 80px;
-            /* Compensa a navbar fixa */
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-
-        section {
-            padding: 60px 0;
-            min-height: auto;
-            display: block !important;
-            /* Força todas as seções a serem visíveis */
-            opacity: 1 !important;
-            animation: none !important;
-            transform: none !important;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--cor3);
-        }
-
-        .section-title h2 {
-            font-size: 36px;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2:after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background: var(--cor4);
-            bottom: -10px;
-            left: 25%;
-        }
-
-        .section-title p {
-            font-size: 18px;
-            color: #666;
-        }
-
-        /* Botões */
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: var(--cor4);
-            color: var(--cor5);
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transicao);
-            text-decoration: none;
-            box-shadow: var(--sombra);
-        }
-
-        .btn:hover {
-            background: var(--cor2);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        /* HOME - Hero Slider */
-        #home {
-            padding-top: 20px;
-        }
-
-        .hero-slider {
-            position: relative;
-            height: 500px;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: var(--sombra);
-        }
-
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-        .slide-content {
-            position: absolute;
-            bottom: 100px;
-            left: 50px;
-            max-width: 600px;
-            color: var(--cor5);
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-            z-index: 10;
-        }
-
-        .slide-content h2 {
-            font-size: 42px;
-            margin-bottom: 20px;
-        }
-
-        .slide-content p {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-
-        .slide-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%);
-        }
-
-        .slider-nav {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            z-index: 10;
-        }
-
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            margin: 0 5px;
-            cursor: pointer;
-            transition: var(--transicao);
-        }
-
-        .slider-dot.active {
-            background: var(--cor5);
-            transform: scale(1.2);
-        }
-
-        /* Atividades */
-        .atividades {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .atividade-card {
-            background: var(--cor5);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--sombra);
-            transition: var(--transicao);
-        }
-
-        .atividade-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .atividade-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .atividade-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transicao);
-        }
-
-        .atividade-card:hover .atividade-img img {
-            transform: scale(1.1);
-        }
-
-        .atividade-content {
-            padding: 20px;
-        }
-
-        .atividade-content h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: var(--cor3);
-        }
-
-        .atividade-content p {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        /* Parceiros */
-        .parceiros {
-            background: #f9f9f9;
-            padding: 40px 0;
-        }
-
-        .parceiros-slider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-
-        .parceiro-item {
-            background: var(--cor5);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: var(--sombra);
-            transition: var(--transicao);
-            flex: 0 0 calc(25% - 40px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 150px;
-        }
-
-        .parceiro-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .parceiro-item img {
-            max-width: 100%;
-            max-height: 80px;
-            filter: grayscale(100%);
-            transition: var(--transicao);
-        }
-
-        .parceiro-item:hover img {
-            filter: grayscale(0%);
-        }
-
-        /* SOBRE */
-        .sobre-content {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .sobre-img {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--sombra);
-        }
-
-        .sobre-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .sobre-text {
-            flex: 1;
-        }
-
-        .sobre-text h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: var(--cor3);
-        }
-
-        .sobre-text h4 {
-
-            font-size: 20px;
-            margin-bottom: 5px;
-            color: var(--cor3);
-
-        }
-
-        .sobre-text p {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .fundadores {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .fundador-card {
-            text-align: center;
-            background: var(--cor5);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: var(--sombra);
-            transition: var(--transicao);
-        }
-
-        .fundador-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .fundador-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 15px;
-            border: 3px solid var(--cor4);
-        }
-
-        .fundador-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .fundador-card h4 {
-            font-size: 20px;
-            margin-bottom: 5px;
-            color: var(--cor3);
-        }
-
-        .fundador-card p {
-            color: #666;
-            font-style: italic;
-        }
-
-        /* GALERIA */
-        .galeria-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-        }
-
-        .galeria-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            height: 250px;
-            cursor: pointer;
-        }
-
-        .galeria-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transicao);
-        }
-
-        .galeria-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .galeria-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(89, 50, 2, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: var(--transicao);
-        }
-
-        .galeria-item:hover .galeria-overlay {
-            opacity: 1;
-        }
-
-        .galeria-overlay i {
-            color: var(--cor5);
-            font-size: 30px;
-        }
-
-        /* Lightbox */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            opacity: 0;
-            pointer-events: none;
-            transition: var(--transicao);
-        }
-
-        .lightbox.open {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 80%;
-        }
-
-        .lightbox-content img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: var(--cor5);
-            font-size: 30px;
-            cursor: pointer;
-        }
-
-        /* PROJETOS */
-        .projetos-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .projeto-card {
-            background: var(--cor5);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--sombra);
-            transition: var(--transicao);
-        }
-
-        .projeto-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .projeto-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .projeto-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transicao);
-        }
-
-        .projeto-card:hover .projeto-img img {
-            transform: scale(1.1);
-        }
-
-        .projeto-content {
-            padding: 20px;
-        }
-
-        .projeto-content h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: var(--cor3);
-        }
-
-        .projeto-content p {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        /* TESTEMUNHOS */
-        .testemunhos-container {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .testemunho {
-            background: var(--cor5);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: var(--sombra);
-            text-align: center;
-            display: none;
-        }
-
-        .testemunho.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .testemunho-text {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: #555;
-            font-style: italic;
-        }
-
-        .testemunho-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .author-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 15px;
-            border: 2px solid var(--cor4);
-        }
-
-        .author-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .author-info h4 {
-            font-size: 18px;
-            margin-bottom: 5px;
-            color: var(--cor3);
-        }
-
-        .author-info p {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .testemunho-nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .testemunho-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ddd;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: var(--transicao);
-        }
-
-        .testemunho-dot.active {
-            background: var(--cor4);
-            transform: scale(1.2);
-        }
-
-        .add-testemunho {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .testemunho-form {
-            max-width: 600px;
-            margin: 30px auto 0;
-            background: var(--cor5);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: var(--sombra);
-            text-align: left;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: var(--cor3);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Nunito Sans', sans-serif;
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* FAQ */
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 20px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--sombra);
-        }
-
-        .faq-pergunta {
-            padding: 20px;
-            background: var(--cor1);
-            color: var(--cor3);
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transicao);
-        }
-
-        .faq-pergunta:hover {
-            background: var(--cor2);
-        }
-
-        .faq-pergunta i {
-            transition: var(--transicao);
-        }
-
-        .faq-item.active .faq-pergunta i {
-            transform: rotate(180deg);
-        }
-
-        .faq-resposta {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            background: #f9f9f9;
-        }
-
-        .faq-item.active .faq-resposta {
-            padding: 20px;
-            max-height: 500px;
-        }
-
-        /* CONTACTOS */
-        #contactos {
-            padding-bottom: 40px;
-        }
-
-        .contactos-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .contacto-info {
-            margin-bottom: 30px;
-        }
-
-        .contacto-info h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: var(--cor3);
-        }
-
-        .contacto-detalhes {
-            list-style: none;
-        }
-
-        .contacto-detalhes li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .contacto-detalhes i {
-            width: 40px;
-            height: 40px;
-            background: var(--cor4);
-            color: var(--cor5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-        }
-
-        .contacto-form .form-group {
-            margin-bottom: 20px;
-        }
-
-        .mapa {
-            margin-top: 40px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--sombra);
-        }
-
-        .mapa iframe {
-            width: 100%;
-            height: 300px;
-            border: none;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--cor3);
-            color: var(--cor5);
-            padding: 60px 0 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h4 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-col h4:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--cor4);
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-col ul li a {
-            color: #ccc;
-            text-decoration: none;
-            transition: var(--transicao);
-        }
-
-        .footer-col ul li a:hover {
-            color: var(--cor5);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--cor5);
-            transition: var(--transicao);
-        }
-
-        .social-links a:hover {
-            background: var(--cor4);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Navegação por teclado para acessibilidade */
-        .nav-links a:focus {
-            outline: 2px solid var(--cor4);
-            outline-offset: 4px;
-        }
-
-        .btn:focus {
-            outline: 2px solid var(--cor3);
-            outline-offset: 2px;
-        }
-
-        /* Responsividade */
-        @media (max-width: 992px) {
-            .sobre-content {
-                flex-direction: column;
-            }
-
-            .sobre-img,
-            .sobre-text {
-                flex: none;
-                width: 100%;
-            }
-
-            .parceiro-item {
-                flex: 0 0 calc(33.333% - 40px);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-
-            .hamburger.active .bar:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger.active .bar:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-
-            .hamburger.active .bar:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-
-            .nav-links {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                gap: 0;
-                flex-direction: column;
-                background: var(--cor5);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-                padding: 20px 0;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .nav-links li {
-                margin: 15px 0;
-            }
-
-            .slide-content {
-                left: 30px;
-                bottom: 60px;
-                max-width: 80%;
-            }
-
-            .slide-content h2 {
-                font-size: 32px;
-            }
-
-            .parceiro-item {
-                flex: 0 0 calc(50% - 40px);
-            }
-        }
-
-        @media (max-width: 576px) {
-            .section-title h2 {
-                font-size: 28px;
-            }
-
-            .slide-content h2 {
-                font-size: 24px;
-            }
-
-            .slide-content p {
-                font-size: 16px;
-            }
-
-            .parceiro-item {
-                flex: 0 0 100%;
-            }
-
-            .testemunho-author {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .author-img {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-        }
+      
     </style>
 </head>
 
@@ -1041,7 +23,7 @@
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <img src="favicon.png" alt="BusCenter Logo">
+                    <img src="assets/img/icon/bus.jpg" alt="BusCenter Logo">
                 </div>
                 <ul class="nav-links">
                     <li><a href="#home" class="nav-link active">Home</a></li>
@@ -1051,7 +33,7 @@
                     <li><a href="#testemunhos" class="nav-link">Testemunhos</a></li>
                     <li><a href="#parceiros" class="nav-link">Parceiros</a></li>
                     <li><a href="#faq" class="nav-link">FAQ</a></li>
-                    <li><a href="#contactos" class="nav-link">Contactos</a></li>
+                    <li><a href="#contatos" class="nav-link">Contactos</a></li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -1110,10 +92,9 @@
                     <h2>Sobre Nós</h2>
                     <p>Conheça a nossa história e missão</p>
                 </div>
-
                 <div class="sobre-content">
                     <div class="sobre-img">
-                        <img src="favicon.png" alt="Equipe BusCenter">
+                        <img src="assets/img/icon/icon.jpg" alt="Equipe BusCenter">
                     </div>
                     <div class="sobre-text">
                         <h3>Nossa História</h3>
@@ -1131,18 +112,16 @@
                         <p>Nosso trabalho é sustentado pelo compromisso inegociável com a equidade, pela celebração da
                             diversidade, pela prática da inclusão e pela responsabilidade de agir com sustentabilidade
                             em todas as nossas iniciativas</p>
-
                         <a href="#contactos" class="btn">Junte-se a Nós</a>
                     </div>
                 </div>
 
-                <div class="section-title">
+                <div class="section-title founder">
                     <h2>Nossos Fundadores</h2>
                     <p>Movidos pela crença no poder transformador da tecnologia e na força das comunidades, nossos
                         fundadores uniram-se com uma missão clara: bridge o fosso digital e criar um futuro mais
                         inclusivo e sustentável para todos.</p>
                 </div>
-
                 <div class="fundadores">
                     <div class="fundador-card">
                         <div class="fundador-img">
@@ -1176,6 +155,50 @@
             </div>
         </section>
         <!--Adicção de actividadea-->
+        <!-- Projetos Section -->
+        <section id="projetos">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Nossos Projectos</h2>
+                    <p>Áreas de formação & actuação</p>
+                </div>
+                <div class="projetos-container">
+                    <div class="projeto-card">
+                        <div class="projeto-img">
+                            <img src="assets/img/projects/steam.jpg" alt="Tecnologia">
+                        </div>
+                        <div class="projeto-content">
+                            <h3>Bus STEAM</h3>
+                            <p>Oficinas de informática, programação básica, robótica e desenvolvimento de aplicações.
+                            </p>
+                            <a href="pages/BC health/index.html" target="_blank" class="btn">Explorar</a>
+                        </div>
+                    </div>
+                    <div class="projeto-card">
+                        <div class="projeto-img">
+                            <img src="assets/img/projects/empreendedor.jpg" alt="Artes">
+                        </div>
+                        <div class="projeto-content">
+                            <h3>Bus Empreendedor</h3>
+                            <p>Workshops de pintura, teatro, música, dança e outras expressões artísticas.</p>
+                            <a href="pages/BC employer/index.html" class="btn">Explorar</a>
+                        </div>
+                    </div>
+                    <div class="projeto-card">
+                        <div class="projeto-img">
+                            <img src="assets/img/projects/saude.jpg" alt="Artes">
+                        </div>
+                        <div class="projeto-content">
+                            <h3>Bus Saúde</h3>
+                            <p>Saúde preventiva busca mudar a visão de prover serviços às comunidades. </p>
+                            <a href="pages/BC health/index.html" target="_blank" class="btn">Explorar</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
         <!-- Galeria Section -->
         <section id="galeria">
             <div class="container">
@@ -1216,101 +239,27 @@
                         </div>
                     </div>
                     <div class="galeria-item">
-                        <img src="assets/img/body/img2.png" alt="Actividade 6">
+                        <img src="assets/img/body/img2.png" alt="Actividade 5">
                         <div class="galeria-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                    <div class="galeria-item">
+                        <img src="assets/img/body/img3.png" alt="Actividade 5">
+                        <div class="galeria-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="galeria-item">
+                        <img src="assets/img/body/img3.jpg" alt="Actividade 6">
+                        <div class="galeria-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
 
-        <!-- Projetos Section -->
-        <section id="projetos">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Nossos Projectos</h2>
-                    <p>Áreas de formação & actuação</p>
-                </div>
-
-                <div class="projetos-container">
-                    <div class="projeto-card">
-                        <div class="projeto-img">
-                            <img src="assets/img/projects/steam.jpg" alt="Tecnologia">
-                        </div>
-                        <div class="projeto-content">
-                            <h3>Bus STEAM</h3>
-                            <p>Oficinas de informática, programação básica, robótica e desenvolvimento de aplicações.
-                            </p>
-                            <a href="#" class="btn">Saber Mais</a>
-                        </div>
-                    </div>
-                    <div class="projeto-card">
-                        <div class="projeto-img">
-                            <img src="assets/img/projects/empreendedor.jpg" alt="Artes">
-                        </div>
-                        <div class="projeto-content">
-                            <h3>Bus Empreendedor</h3>
-                            <p>Workshops de pintura, teatro, música, dança e outras expressões artísticas.</p>
-                            <a href="#" class="btn">Saber Mais</a>
-                        </div>
-                    </div>
-                    <div class="projeto-card">
-                        <div class="projeto-img">
-                            <img src="assets/img/projects/saude.jpg" alt="Artes">
-                        </div>
-                        <div class="projeto-content">
-                            <h3>Bus Saúde</h3>
-                            <p>Workshops de pintura, teatro, música, dança e outras expressões artísticas.</p>
-                            <a href="#" class="btn">Saber Mais</a>
-                        </div>
-                    </div>
-                    <div class="projeto-card">
-                        <div class="projeto-img">
-                            <img src="assets/img/projects/elas.jpg" alt="Desporto">
-                        </div>
-                        <div class="projeto-content">
-                            <h3>Bus para Elas</h3>
-                            <p>Actividades desportivas, competições saudáveis e educação para um estilo de vida
-                                saudável.</p>
-                            <a href="#" class="btn">Saber Mais</a>
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Parceiros Section -->
-        <section id="parceiros">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Nossos Parceiros</h2>
-                    <p>Empresas e organizações que apoiam nossa causa</p>
-                </div>
-
-                <div class="parceiros-slider">
-                    <div class="parceiro-item">
-                        <img src="assets/img/partners/buka-logo.jpeg" alt="Parceiro 1">
-                    </div>
-                    <div class="parceiro-item">
-                        <img src="assets/img/partners/fadcom-logo.png" alt="Parceiro 2">
-                    </div>
-                    <div class="parceiro-item">
-                        <img src="assets/img/partners/embaixada-usa-logo.png" alt="Parceiro 6">
-                    </div>
-                    <div class="parceiro-item">
-                        <img src="assets/img/partners/unitel.png" alt="Parceiro 6">
-                    </div>
-                    <div class="parceiro-item">
-                        <img src="assets/img/partners/xyami.png" alt="Parceiro 6">
-                    </div>
-                    <div class="parceiro-item">
-                        <img src="assets/img/partners/huawei.png" alt="Parceiro 6">
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Testemunhos Section -->
         <section id="testemunhos">
             <div class="container">
@@ -1318,7 +267,6 @@
                     <h2>Testemunhos</h2>
                     <p>O que dizem sobre o BusCenter</p>
                 </div>
-
                 <div class="testemunhos-container">
                     <div class="testemunho active">
                         <p class="testemunho-text">"O BusCenter mudou a minha vida. Através dos cursos de programação,
@@ -1361,26 +309,49 @@
                         <div class="testemunho-dot"></div>
                     </div>
                 </div>
-
                 <div class="add-testemunho">
-                    <h3>Partilhe a sua experiência</h3>
-                    <p>Se já participou nas nossas actividades, deixe o seu testemunho</p>
-                    <a href="#" class="btn" id="btn-add-testemunho">Adicionar Testemunho</a>
+                    <button id="btn-add-testemunho" class="btn">Adicionar Testemunho</button>
 
-                    <div class="testemunho-form" id="testemunho-form" style="display: none;">
+                    <form id="testemunho-form" class="testemunho-form" style="display: none;">
                         <div class="form-group">
-                            <label for="nome">Nome</label>
-                            <input type="text" id="nome" placeholder="Seu nome">
+                            <label for="nome-testemunho">Nome:</label>
+                            <input type="text" id="nome-testemunho" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="Seu email">
-                        </div>
-                        <div class="form-group">
-                            <label for="testemunho">Seu Testemunho</label>
-                            <textarea id="testemunho" placeholder="Partilhe a sua experiência"></textarea>
+                            <label for="texto-testemunho">Seu testemunho:</label>
+                            <textarea id="texto-testemunho" required></textarea>
                         </div>
                         <button type="submit" class="btn">Enviar Testemunho</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- Parceiros Section -->
+        <section id="parceiros">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Nossos Parceiros</h2>
+                    <p>Empresas e organizações que apoiam nossa causa</p>
+                </div>
+
+                <div class="parceiros-slider">
+                    <div class="parceiro-item">
+                        <img src="assets/img/partners/buka-logo.jpeg" alt="Parceiro 1">
+                    </div>
+                    <div class="parceiro-item">
+                        <img src="assets/img/partners/fadcom-logo.png" alt="Parceiro 2">
+                    </div>
+                    <div class="parceiro-item">
+                        <img src="assets/img/partners/embaixada-usa-logo.png" alt="Parceiro 6">
+                    </div>
+                    <div class="parceiro-item">
+                        <img src="assets/img/partners/unitel.png" alt="Parceiro 6">
+                    </div>
+                    <div class="parceiro-item">
+                        <img src="assets/img/partners/xyami.png" alt="Parceiro 6">
+                    </div>
+                    <div class="parceiro-item">
+                        <img src="assets/img/partners/huawei.png" alt="Parceiro 6">
                     </div>
                 </div>
             </div>
@@ -1392,6 +363,7 @@
                 <div class="section-title">
                     <h2>Perguntas Frequentes</h2>
                     <p>Tire suas dúvidas sobre o BusCenter</p>
+                    <p>Ou use o <span class="text-bot">BC Bot</span> para perguntas personalizadas</p>
                 </div>
 
                 <div class="faq-container">
@@ -1401,9 +373,9 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-resposta">
-                            <p>As inscrições para os cursos são feitas através do nosso site ou presencialmente na nossa
-                                sede. Periodicamente, abrimos vagas para novos participantes, e divulgamos essas
-                                informações nas nossas redes sociais e site oficial.</p>
+                            <p>As inscrições são abertas periodicamente. Entre em contato conosco através dos nossos
+                                canais de comunicação ou visite nossa sede para mais informações sobre os próximos
+                                processos seletivos.</p>
                         </div>
                     </div>
                     <div class="faq-item">
@@ -1449,120 +421,69 @@
                                 nossos projectos graças ao apoio de parceiros, doadores e voluntários.</p>
                         </div>
                     </div>
+                    <div class="faq-item">
+                        <div class="faq-pergunta">
+                            <span>Os cursos são realmente gratuitos?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-resposta">
+                            <p>Sim! Todos os nossos programas são completamente gratuitos, incluindo materiais
+                                didáticos, certificados e, quando necessário, lanche durante as atividades.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Contactos Section -->
-        <section id="contactos">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Contactos</h2>
-                    <p>Entre em contacto connosco</p>
-                </div>
 
-                <div class="contactos-container">
-                    <div class="contacto-info">
-                        <h3>Informações de Contacto</h3>
-                        <ul class="contacto-detalhes">
-                            <li>
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Av. Principal, 123, Cidade</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-phone"></i>
-                                <span>+351 123 456 789</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-envelope"></i>
-                                <span>geral@buscenter.org</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-clock"></i>
-                                <span>Segunda a Sexta: 9h-18h</span>
-                            </li>
-                        </ul>
-
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="contacto-form">
-                        <h3>Envie-nos uma mensagem</h3>
-                        <form>
-                            <div class="form-group">
-                                <label for="contact-name">Nome</label>
-                                <input type="text" id="contact-name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact-email">Email</label>
-                                <input type="email" id="contact-email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact-subject">Assunto</label>
-                                <input type="text" id="contact-subject" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact-message">Mensagem</label>
-                                <textarea id="contact-message" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="btn">Enviar Mensagem</button>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="mapa">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3110.798430225912!2d-9.157749384657937!3d38.72262607959336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19348021664d61%3A0x5114e874c5d47981!2sLisbon!5e0!3m2!1sen!2spt!4v1622738808554!5m2!1sen!2spt"
-                        allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- Footer -->
-    <footer>
+    <!-- Footer/Contact Section -->
+    <footer class="footer" id="contatos">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-col">
-                    <h4>BusCenter</h4>
-                    <p>Transformando vidas através da educação e formação de crianças e adolescentes em situação de
-                        vulnerabilidade.</p>
+                <div class="footer-section">
+                    <h3>Contatos</h3>
+                    <p><i class="fas fa-phone"></i> +244 123 456 789</p>
+                    <p><i class="fas fa-envelope"></i> contato@buscenter.ao</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua da Educação, 123<br>Luanda, Angola</p>
                 </div>
-                <div class="footer-col">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#sobre">Sobre Nós</a></li>
-                        <li><a href="#projetos">Projectos</a></li>
-                        <li><a href="#galeria">Galeria</a></li>
-                        <li><a href="#contactos">Contactos</a></li>
-                    </ul>
+
+                <div class="footer-section">
+                    <h3>Horários</h3>
+                    <p>Segunda a Sexta: 08:00 - 17:00</p>
+                    <p>Sábado: 08:00 - 12:00</p>
+                    <p>Domingo: Fechado</p>
                 </div>
-                <div class="footer-col">
-                    <h4>Projectos</h4>
-                    <ul>
-                        <li><a href="#">Tecnologia e Programação</a></li>
-                        <li><a href="#">Artes e Criatividade</a></li>
-                        <li><a href="#">Desporto e Bem-estar</a></li>
-                        <li><a href="#">Apoio Psicossocial</a></li>
-                    </ul>
+
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+
+                    </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Newsletter</h4>
-                    <p>Subscreva a nossa newsletter para receber actualizações sobre os nossos projectos.</p>
-                    <form>
-                        <input type="email" placeholder="Seu email" required>
-                        <button type="submit" class="btn">Subscrever</button>
+
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Receba nossas novidades e histórias inspiradoras</p>
+                    <form style="margin-top: 1rem;">
+                        <input type="email" placeholder="Seu email"
+                            style="width: 100%; padding: 10px; border: none; border-radius: 5px; margin-bottom: 10px;">
+                        <button type="submit" class="btn" style="width: 100%;">Inscrever</button>
                     </form>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 BusCenter. Todos os direitos reservados.</p>
+
+            <div
+                style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 2rem; padding-top: 2rem; text-align: center;">
+                <p>&copy; 2025 Buscenter. Todos os direitos reservados. | Desenvolvido por: <a href="#"><span
+                            class="text-bot" style="color: bisque;">Evision_Holding</span></a></p>
             </div>
         </div>
     </footer>
@@ -1576,149 +497,8 @@
             <i class="fas fa-times"></i>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Menu hamburger para mobile
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-links');
-
-            hamburger.addEventListener('click', function () {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-
-            // Fechar menu ao clicar num link
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function () {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-
-                    // Scroll suave para a seção
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Hero Slider
-            const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.slider-dot');
-            let currentSlide = 0;
-
-            function showSlide(n) {
-                slides.forEach(slide => {
-                    slide.classList.remove('active');
-                });
-                dots.forEach(dot => {
-                    dot.classList.remove('active');
-                });
-
-                currentSlide = (n + slides.length) % slides.length;
-
-                slides[currentSlide].classList.add('active');
-                dots[currentSlide].classList.add('active');
-            }
-
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', function () {
-                    showSlide(index);
-                });
-            });
-
-            // Auto slide
-            setInterval(() => {
-                showSlide(currentSlide + 1);
-            }, 5000);
-
-            // Testemunhos Slider
-            const testemunhos = document.querySelectorAll('.testemunho');
-            const testemunhoDots = document.querySelectorAll('.testemunho-dot');
-            let currentTestemunho = 0;
-
-            function showTestemunho(n) {
-                testemunhos.forEach(testemunho => {
-                    testemunho.classList.remove('active');
-                });
-                testemunhoDots.forEach(dot => {
-                    dot.classList.remove('active');
-                });
-
-                currentTestemunho = (n + testemunhos.length) % testemunhos.length;
-
-                testemunhos[currentTestemunho].classList.add('active');
-                testemunhoDots[currentTestemunho].classList.add('active');
-            }
-
-            testemunhoDots.forEach((dot, index) => {
-                dot.addEventListener('click', function () {
-                    showTestemunho(index);
-                });
-            });
-
-            // Auto testemunhos
-            setInterval(() => {
-                showTestemunho(currentTestemunho + 1);
-            }, 6000);
-
-            // Formulário de testemunho
-            const btnAddTestemunho = document.getElementById('btn-add-testemunho');
-            const testemunhoForm = document.getElementById('testemunho-form');
-
-            if (btnAddTestemunho && testemunhoForm) {
-                btnAddTestemunho.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    testemunhoForm.style.display = testemunhoForm.style.display === 'none' ? 'block' : 'none';
-                });
-            }
-
-            // FAQ Accordion
-            const faqItems = document.querySelectorAll('.faq-item');
-
-            faqItems.forEach(item => {
-                const pergunta = item.querySelector('.faq-pergunta');
-
-                pergunta.addEventListener('click', function () {
-                    item.classList.toggle('active');
-                });
-            });
-
-            // Galeria Lightbox
-            const galeriaItems = document.querySelectorAll('.galeria-item');
-            const lightbox = document.querySelector('.lightbox');
-            const lightboxImg = document.querySelector('.lightbox-content img');
-            const lightboxClose = document.querySelector('.lightbox-close');
-
-            galeriaItems.forEach(item => {
-                item.addEventListener('click', function () {
-                    const imgSrc = this.querySelector('img').getAttribute('src');
-                    lightboxImg.setAttribute('src', imgSrc);
-                    lightbox.classList.add('open');
-                });
-            });
-
-            if (lightboxClose) {
-                lightboxClose.addEventListener('click', function () {
-                    lightbox.classList.remove('open');
-                });
-            }
-
-            // Fechar lightbox clicando fora da imagem
-            if (lightbox) {
-                lightbox.addEventListener('click', function (e) {
-                    if (e.target === lightbox) {
-                        lightbox.classList.remove('open');
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="assets/js/scroll.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

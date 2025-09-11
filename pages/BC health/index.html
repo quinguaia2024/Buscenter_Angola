@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página em Construção</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #d19a57 0%, #593202 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 0 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .countdown {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .countdown-number {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            min-width: 80px;
+            transition: all 0.3s ease;
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            font-weight: normal;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: white;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 1s linear;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .manual-redirect {
+            margin-top: 2rem;
+        }
+
+        .manual-redirect a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .manual-redirect a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .gears {
+            position: absolute;
+            opacity: 0.1;
+        }
+
+        .gear1 {
+            top: 10%;
+            left: 10%;
+            font-size: 60px;
+            animation: rotate 8s linear infinite;
+        }
+
+        .gear2 {
+            bottom: 10%;
+            right: 10%;
+            font-size: 80px;
+            animation: rotate-reverse 10s linear infinite;
+        }
+
+        .gear3 {
+            top: 50%;
+            right: 5%;
+            font-size: 40px;
+            animation: rotate 6s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotate-reverse {
+            from {
+                transform: rotate(360deg);
+            }
+            to {
+                transform: rotate(0deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .countdown {
+                font-size: 2rem;
+            }
+            
+            .icon {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gears gear1">⚙️</div>
+    <div class="gears gear2">⚙️</div>
+    <div class="gears gear3">⚙️</div>
+
+    <div class="container">
+        <div class="icon">🚧</div>
+        <h1>Página em Construção</h1>
+        <p>Estamos trabalhando para trazer novidades incríveis para você! Esta página estará disponível em breve.</p>
+        
+        <div class="countdown">
+            <div class="countdown-number" id="seconds">20</div>
+            <div class="countdown-label">segundos</div>
+        </div>
+        
+        <p>Você será redirecionado automaticamente para a página inicial.</p>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+        
+        <div class="manual-redirect">
+            <a href="../../index.html"  target="_blank">Voltar a página inicial →</a>
+        </div>
+    </div>
+
+    <script>
+        // Configurações
+        const REDIRECT_TIME = 20; // segundos
+        const REDIRECT_URL = 'index.html'; // URL de redirecionamento
+        
+        let timeLeft = REDIRECT_TIME;
+        const secondsElement = document.getElementById('seconds');
+        const progressBar = document.getElementById('progressBar');
+        const redirectLink = document.getElementById('redirectLink');
+        
+        // Atualiza o link de redirecionamento
+        redirectLink.href = REDIRECT_URL;
+        
+        // Função para atualizar o contador
+        function updateCountdown() {
+            secondsElement.textContent = timeLeft;
+            
+            // Atualiza a barra de progresso
+            const progress = ((REDIRECT_TIME - timeLeft) / REDIRECT_TIME) * 100;
+            progressBar.style.width = progress + '%';
+            
+            // Adiciona efeito de pulso quando está próximo do fim
+            if (timeLeft <= 5) {
+                secondsElement.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    secondsElement.style.transform = 'scale(1)';
+                }, 200);
+            }
+            
+            if (timeLeft <= 0) {
+                // Redireciona para a página inicial
+                window.location.href = REDIRECT_URL;
+            } else {
+                timeLeft--;
+            }
+        }
+        
+        // Inicia o contador imediatamente
+        updateCountdown();
+        
+        // Atualiza a cada segundo
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        
+        // Limpa o intervalo se o usuário sair da página
+        window.addEventListener('beforeunload', () => {
+            clearInterval(countdownInterval);
+        });
+        
+        // Adiciona partículas animadas no fundo
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = 'rgba(255, 255, 255, 0.5)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            particle.style.zIndex = '-1';
+            
+            document.body.appendChild(particle);
+            
+            const duration = Math.random() * 3 + 2; // 2-5 segundos
+            particle.style.transition = `all ${duration}s linear`;
+            
+            setTimeout(() => {
+                particle.style.transform = `translateY(-${window.innerHeight + 100}px)`;
+                particle.style.opacity = '0';
+            }, 10);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, duration * 1000);
+        }
+        
+        // Cria partículas periodicamente
+        setInterval(createParticle, 300);
+    </script>
+</body>
+</html>

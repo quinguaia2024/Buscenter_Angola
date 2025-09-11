@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../favicon.png" type="image/x-icon">
+    <title>BCA Quiz - Aprenda Brincando!</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="../../css/quizz main style.css">
+</head>
+<body>
+    <audio id="backgroundAudio" loop aria-label="Música de fundo educativa">
+        <source src="../../audios/audio1.mp3" type="audio/mpeg">
+        <source src="audio/audio1.ogg" type="audio/ogg">
+    </audio>
+    <canvas id="confetti-canvas"></canvas>
+    <header>
+        <div class="container">
+            <h1><span class="coin-icon">🌍</span>Bem-vindo ao BCA Quiz - Aprenda Brincando!</h1>
+            <p>Escolha sua área e comece a construir seu império!</p>
+            <button class="audio-control" onclick="toggleAudio()" aria-label="Silenciar ou ativar áudio">Silenciar Áudio</button>
+        </div>
+    </header>
+    <div class="container">
+        <div style="background-color: var(--secondary-light); padding: 20px; border-radius: 15px; margin: 20px 0; text-align: center;">
+            <video autoplay muted loop playsinline aria-label="Vídeo introdutório do Magnata Global">
+                <source src="../../images/video/kid learnin.mp4" type="video/mp4">
+                <p>Seu navegador não suporta vídeos. Veja uma imagem estática <a href="../../images/areas image/alternativ2.jpg">aqui</a>.</p>
+            </video>
+        </div>
+        <h2 class="text-2xl font-bold text-center mb-6" style="color: var(--primary-dark);">Selecione uma Categoria</h2>
+        <div class="category-grid">
+            <div class="category-item" onclick="redirectToCategory('financas')">
+                <img src="../../images/areas image/finances.jpg" alt="Finanças" class="category-img">
+                <h3 class="text-xl font-bold">Finanças 🤑</h3>
+                <p>Teste seus conhecimentos financeiros e domine o mercado!</p>
+                <button class="category-btn" aria-label="Jogar quiz de Finanças">Jogar Agora</button>
+            </div>
+            <div class="category-item" onclick="redirectToCategory('negocios')">
+                <img src="../../images/areas image/business.jpg" alt="Negócios" class="category-img">
+                <h3 class="text-xl font-bold">Negócios 💼</h3>
+                <p>Estratégias para construir um império empresarial!</p>
+                <button class="category-btn" aria-label="Jogar quiz de Negócios">Jogar Agora</button>
+            </div>
+            <div class="category-item" onclick="redirectToCategory('carreiras')">
+                <img src="../../images/areas image/carrer.jpg" alt="Carreiras" class="category-img">
+                <h3 class="text-xl font-bold">Carreiras 🌟</h3>
+                <p>Desenvolva sua trajetória profissional!</p>
+                <button class="category-btn" aria-label="Jogar quiz de Carreiras">Jogar Agora</button>
+            </div>
+            <div class="category-item" onclick="redirectToCategory('tecnologia')">
+                <img src="../../images/areas image/tecnology2.avif" alt="Tecnologia" class="category-img">
+                <h3 class="text-xl font-bold">Tecnologia 🚀</h3>
+                <p>Inove e lidere a revolução tecnológica!</p>
+                <button class="category-btn" aria-label="Jogar quiz de Tecnologia">Jogar Agora</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <p>© 2025 BusCenter Angola - Todos os direitos reservados</p>
+            <p>Escolha sua área e domine o mundo!</p>
+        </div>
+    </footer>
+    <script src="../../js/main quizz.js"></script>
+</body>
+</html>

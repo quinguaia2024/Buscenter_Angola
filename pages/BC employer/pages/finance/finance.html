@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../favicon.png" type="image/x-icon">
+    <title>BCA Quiz - Aprenda Brincando!</title>
+    <link rel="stylesheet" href="../../css/quizz style.css">
+</head>
+<body>
+    <audio id="backgroundAudio" loop aria-label="Música de fundo educativa">
+        <source src="../../audios/quizz audio/1.mp3" type="audio/mpeg">
+        <source src="audios/quizz audio/2.mp3" type="audio/ogg">
+    </audio>
+    <audio id="quizAudio" loop aria-label="Música de fundo do quiz">
+        <source src="../../audios/quizz audio/quiz audio.mp3" type="audio/mpeg">
+        <source src="../../audio/quiz_music.ogg" type="audio/ogg">
+    </audio>
+    <audio id="correctSound" aria-label="Som de resposta correta">
+        <source src="../../audios/quizz audio/correct answer.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="incorrectSound" aria-label="Som de resposta incorreta">
+        <source src="../../audios/quizz audio/wrong answer.mp3" type="audio/mpeg">
+    </audio>
+    <canvas id="confetti-canvas"></canvas>
+
+    <header>
+        <div class="container">
+            <h1><span class="coin-icon">🤑</span>BCA Quiz - Aprenda Brincando!</h1>
+            <p>Aprenda sobre dinheiro brincando!</p>
+            <button class="audio-control" onclick="toggleAudio()" aria-label="Silenciar ou ativar áudio">Silenciar Áudio</button>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="main-menu">
+            <button class="menu-btn" onclick="showSection('home')">Início 🏠</button>
+            <button class="menu-btn" onclick="showSection('modules')">Módulos 📚</button>
+            <button class="menu-btn" onclick="showSection('quiz')">Quiz 🎲</button>
+            <button class="menu-btn" onclick="showSection('student-panel')">Meu Painel 🌟</button>
+        </div>
+        
+        <section id="home" class="content-section active">
+            <h2>Bem-vindo ao BCA Quiz! 🤑</h2>
+            <p>Este é um lugar divertido para aprender sobre dinheiro, poupança e como tomar boas decisões financeiras.</p>
+            
+            <div style="background-color: var(--secondary-light); padding: 20px; border-radius: 15px; margin: 20px 0; text-align: center;">
+                <video autoplay muted loop playsinline aria-label="Vídeo introdutório sobre educação financeira">
+                    <source src="../../images/video/bus.mp4" type="video/mp4">
+                    <p>Seu navegador não suporta vídeos. Veja uma imagem estática <a href="../../images/general gallery/2.jpg">aqui</a>.</p>
+                </video>
+            </div>
+            
+            <div style="display: flex; gap: 20px; margin-top: 30px;">
+                <div style="flex: 1; background-color: var(--secondary-light); padding: 15px; border-radius: 10px;">
+                    <h3 style="color: var(--primary-dark); margin-top: 0;">Por que aprender? 💡</h3>
+                    <p>Saber sobre dinheiro desde cedo ajuda a tomar melhores decisões no futuro!</p>
+                </div>
+                <div style="flex: 1; background-color: var(--secondary-light); padding: 15px; border-radius: 10px;">
+                    <h3 style="color: var(--primary-dark); margin-top: 0;">Como funciona? 🚀</h3>
+                    <p>Aprenda com nossos módulos e teste seus conhecimentos com quizzes divertidos!</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="modules" class="content-section">
+            <h2>Módulos de Aprendizado 📚</h2>
+            <p style="color: var(--text-secondary);">Clique nas imagens para começar a aprender:</p>
+            
+            <div class="module-list">
+                <div class="module-item">
+                    <img src="../../images/financial education/1.png" alt="O que é dinheiro?" class="module-img" onclick="startModule(1)" aria-label="Iniciar Módulo 1: O que é dinheiro?">
+                    <span class="module-tooltip">O que é dinheiro?</span>
+                    <h3>🤑 Módulo 1: O que é dinheiro?</h3>
+                    <p>Aprenda sobre a história do dinheiro e como ele funciona no nosso dia a dia.</p>
+                </div>
+                
+                <div class="module-item">
+                    <img src="../../images/financial education/4.webp" alt="Ganhando dinheiro" class="module-img" onclick="startModule(2)" aria-label="Iniciar Módulo 2: Ganhando dinheiro">
+                    <span class="module-tooltip">Ganhando dinheiro</span>
+                    <h3>💸 Módulo 2: Ganhando dinheiro</h3>
+                    <p>Descubra diferentes maneiras de ganhar dinheiro e o valor do trabalho.</p>
+                </div>
+                
+                <div class="module-item">
+                    <img src="../../images/financial education/8.webp" alt="Poupar ou gastar?" class="module-img" onclick="startModule(3)" aria-label="Iniciar Módulo 3: Poupar ou gastar?">
+                    <span class="module-tooltip">Poupar ou gastar?</span>
+                    <h3>🐷 Módulo 3: Poupar ou gastar?</h3>
+                    <p>Aprenda a tomar decisões inteligentes com seu dinheiro e planejar seus gastos.</p>
+                </div>
+                
+                <div class="module-item">
+                    <img src="../../images/financial education/6.png" alt="Banco para crianças" class="module-img" onclick="startModule(4)" aria-label="Iniciar Módulo 4: Banco para crianças">
+                    <span class="module-tooltip">Banco para crianças</span>
+                    <h3>🏦 Módulo 4: Banco para crianças</h3>
+                    <p>Entenda como os bancos funcionam e como podem nos ajudar a guardar dinheiro.</p>
+                </div>
+                
+                <div class="module-item">
+                    <img src="../../images/financial education/12.webp" alt="Metas financeiras" class="module-img" onclick="startModule(5)" aria-label="Iniciar Módulo 5: Metas financeiras">
+                    <span class="module-tooltip">Metas financeiras</span>
+                    <h3>🌟 Módulo 5: Metas financeiras</h3>
+                    <p>Planeje e alcance seus objetivos financeiros, seja um brinquedo novo ou poupança para o futuro.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="quiz" class="content-section">
+            <div class="quiz-container">
+                <h2>Quiz: O Dinheiro 🎲</h2>
+                <p style="color: var(--text-secondary);">Teste seus conhecimentos sobre educação financeira!</p>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" id="quiz-progress"></div>
+                </div>
+                
+                <div id="question-container">
+                    <div class="question" id="question">Pergunta carregando...</div>
+                    <div class="options" id="options"></div>
+                    <div class="feedback" id="feedback"></div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="nav-btn" id="prev-btn" onclick="prevQuestion()" disabled>← Anterior</button>
+                    <button class="nav-btn" id="next-btn" onclick="nextQuestion()" disabled>Próxima →</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="student-panel" class="content-section">
+            <h2>Meu Painel 🌟</h2>
+            <p style="color: var(--text-secondary);">Acompanhe seu progresso e suas conquistas!</p>
+            
+            <div class="student-panel">
+                <div class="progress-card">
+                    <h3 style="color: var(--primary-dark); border-bottom: 2px solid var(--secondary-main); padding-bottom: 10px;">Meu Progresso 📈</h3>
+                    <div style="display: flex; align-items: center; margin: 15px 0;">
+                        <div style="flex: 1;">
+                            <p style="margin: 5px 0; font-weight: bold;">Módulos completados:</p>
+                            <p style="margin: 5px 0; font-weight: bold;">Pontuação no quiz:</p>
+                            <p style="margin: 5px 0; font-weight: bold;">Pontos:</p>
+                        </div>
+                        <div style="flex: 1; text-align: right;">
+                            <p style="margin: 5px 0;"><span id="completed-modules" style="font-size: 1.2rem; color: var(--primary-dark);">0</span>/5</p>
+                            <p style="margin: 5px 0;"><span id="quiz-score" style="font-size: 1.2rem; color: var(--primary-dark);">0</span>%</p>
+                            <p style="margin: 5px 0;"><span id="total-points" style="font-size: 1.2rem; color: var(--primary-dark);">0</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="badges">
+                        <h4 style="color: var(--primary-dark); border-bottom: 2px solid var(--secondary-main); padding-bottom: 10px;">Minhas Conquistas: 🏆</h4>
+                        <div id="badges-container" style="margin-top: 15px;">
+                            <p style="color: var(--text-secondary); font-style: italic;">Complete quizzes e módulos para desbloquear conquistas!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tasks-card">
+                    <h3 style="color: var(--primary-dark); border-bottom: 2px solid var(--secondary-main); padding-bottom: 10px;">Minhas Tarefas ✨</h3>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="task1">
+                        <label for="task1" style="flex: 1;">Desenhe seu cofrinho dos sonhos</label>
+                        <span style="color: var(--accent-color);">★</span>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="task2">
+                        <label for="task2" style="flex: 1;">Liste 3 coisas que você quer economizar para comprar</label>
+                        <span style="color: var(--accent-color);">★★</span>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="task3">
+                        <label for="task3" style="flex: 1;">Converse com seus pais sobre como eles ganham dinheiro</label>
+                        <span style="color: var(--accent-color);">★★★</span>
+                    </div>
+                    
+                    <div style="margin-top: 20px; background-color: var(--secondary-light); padding: 15px; border-radius: 10px;">
+                        <h4 style="margin-top: 0; color: var(--primary-dark);">Dica do Dia:</h4>
+                        <p>Guardar moedas em um cofrinho pode ajudar a comprar algo especial no futuro!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 BCA Quiz - Todos os direitos reservados</p>
+            <p>Desenvolvido para ensinar educação financeira de forma divertida</p>
+        </div>
+    </footer>
+    <script src="../../js/quizz main.js"></script>
+</body>
+</html>

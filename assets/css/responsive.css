@@ -1,0 +1,120 @@
+/* Responsividade */
+@media (max-width: 992px) {
+    .sobre-content {
+        flex-direction: column;
+    }
+
+    .sobre-img,
+    .sobre-text {
+        flex: none;
+        width: 100%;
+    }
+
+    .parceiro-item {
+        flex: 0 0 calc(33.333% - 40px);
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-links {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        gap: 0;
+        flex-direction: column;
+        background: var(--cor5);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    .slide-content {
+        left: 30px;
+        bottom: 60px;
+        max-width: 80%;
+    }
+
+    .slide-content h2 {
+        font-size: 32px;
+    }
+
+    .parceiro-item {
+        flex: 0 0 calc(50% - 40px);
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title h2 {
+        font-size: 28px;
+    }
+
+    .slide-content h2 {
+        font-size: 24px;
+    }
+
+    .slide-content p {
+        font-size: 16px;
+    }
+
+    .parceiro-item {
+        flex: 0 0 100%;
+    }
+
+    .testemunho-author {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .author-img {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .social-links {
+        justify-content: center;
+        margin-top: 15px;
+        /* centraliza horizontalmente */
+    }
+
+    .btn {
+        display: inline-block;
+        /* já está assim no seu CSS */
+        margin-left: auto;
+        margin-right: auto;
+        /* centraliza se estiver dentro de um container com text-align:center */
+    }
+
+    /* se os botões estiverem em um bloco separado */
+    .algum-container-de-botoes {
+        text-align: center;
+        /* centraliza os botões inline-block */
+    }
+}

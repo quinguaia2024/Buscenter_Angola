@@ -1,0 +1,198 @@
+   :root {
+            --primary-light: #E8F5E9;
+            --primary-main: #4CAF50;
+            --primary-dark: #2E7D32;
+            --secondary-main: #8BC34A;
+            --secondary-light: #DCEDC8;
+            --accent-color: #FFCA28;
+            --soft-yellow: #FFF59D;
+            --button-green: #66BB6A;
+            --text-primary: #1B5E20;
+            --text-secondary: #424242;
+        }
+        * {
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Nunito', 'Arial Rounded MT Bold', sans-serif;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-light);
+            color: var(--text-primary);
+            animation: fadeIn 1s ease-in;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            animation: fadeIn 1.2s ease-in;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary-main), var(--primary-dark));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            animation: fadeIn 1s ease-in;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+        }
+        .audio-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--primary-main), var(--button-green));
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .audio-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px var(--primary-main);
+        }
+        @media (max-width: 600px) {
+            .audio-control {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 10px auto;
+                display: block;
+                padding: 12px 24px;
+                font-size: 1.1rem;
+            }
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .category-item {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 1px solid var(--secondary-light);
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+        }
+        .category-item:hover {
+            transform: scale(0.95);
+            box-shadow: 0 6px 12px rgba(76, 175, 80, 0.5), 0 0 10px var(--primary-main);
+        }
+        .category-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .category-item:hover img {
+            transform: scale(0.95);
+        }
+        .category-item h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .category-item p {
+            font-size: 0.9rem;
+            margin: 0 0 10px;
+        }
+        .category-btn {
+            background: linear-gradient(135deg, var(--primary-main), var(--button-green));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 2px solid white;
+            animation: bounce 2s infinite;
+        }
+        .category-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15), 0 0 10px var(--primary-main);
+        }
+        .coin-icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            margin-right: 10px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            animation: pulse 1.5s infinite;
+        }
+        video {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin: 20px auto;
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes slideGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes pulseShadow {
+            0% { box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+            100% { box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); }
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            background: linear-gradient(90deg, var(--primary-main), var(--secondary-main), var(--primary-dark), var(--soft-yellow));
+            background-size: 400% 400%;
+            color: white;
+            animation: slideGradient 6s ease infinite, pulseShadow 2s ease infinite;
+        }
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+   
